@@ -16,3 +16,6 @@
 5. Release
 6. Deploy
 7. Monitor
+
+## Linux Commands
+### [Linux basics Commands](/linux.md)

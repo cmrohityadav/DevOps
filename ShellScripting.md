@@ -25,4 +25,42 @@ bash hello.sh
 ```
 
 
+## Variables
+
+```bash
+#!/bin/bash
+name="Rohit"
+echo "Hello, $name!"
+
+```
+- No space around =
+- Access with $variable
+
+## User Input
+
+```bash
+
+```
+
+
+
+```bash
+
+```
+```bash
+
+```
+```bash
+
+```
+```bash
+
+```
+```bash
+
+```
+```bash
+
+```
+
 

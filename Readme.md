@@ -107,4 +107,6 @@ Examples: bash, zsh, fish.
 ```
 
 ## [Shell Scripting](/ShellScripting.md)
+## [shell script programs](/shellScripts/)
+
 

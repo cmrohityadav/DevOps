@@ -39,7 +39,10 @@ echo "Hello, $name!"
 ## User Input
 
 ```bash
-
+#!/bin/bash
+echo "Enter your name: "
+read username
+echo "Welcome, $username!"
 ```
 
 

@@ -54,3 +54,80 @@ Modified → Commit directly? ❌ Nahin, direct commit possible nahi hai — sta
 - !important.log → don’t ignore this file even if pattern matches
 
 - **/temp/* → ignore every temp folder at any depth
+
+## Commands
+1. Branch rename
+
+    ```bash
+    # -m (move/rename safely)
+    git branch -m old new
+
+    # if u r working on same branch
+    git branch -m main
+
+    # -M (move/rename forcefully)
+    git branch -M old new
+
+    # if u r working on same branch
+    git branch -M main
+
+
+    ```
+
+2. git Remote Basic
+
+```bash
+
+git remote add origin https://github.com/user/repo.git
+
+# Check remotes
+git remote -v
+
+# Push (local → remote)
+# Local main branch ko remote ke main branch pe bhej do.
+git push origin main
+
+
+git push -u origin main
+# Ye -u (upstream set) kar deta hai, ab se tu sirf git push likhega to Git ko pata hoga kahan push karna hai.
+
+
+
+# Pull (remote → local)
+
+git pull origin main
+# Remote changes laa ke merge kar deta hai local branch me.
+
+
+
+# Fetch
+git fetch origin
+# Remote se latest commits download karta hai, but local branch me merge nahi karta.
+# (Use hota hai compare ya inspect karne ke liye).
+
+
+
+    
+    
+```
+
+3. Branch
+```bash
+
+# list branch
+git branch
+
+# create branch
+git branch nameofbranch
+
+git switch -c newbranch
+
+
+# switch branch
+git switch nameofbranch
+
+
+
+
+```
+

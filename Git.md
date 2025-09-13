@@ -127,6 +127,10 @@ git switch -c newbranch
 git switch nameofbranch
 
 
+# delete branch
+git branch -d temp
+
+#
 
 
 ```

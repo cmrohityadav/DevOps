@@ -123,3 +123,10 @@ Examples: bash, zsh, fish.
 - Collaborate
 
 ### [Git more](/Git.md)
+
+
+## Environment management
+- Environment management is about how software teams create, configure, monitor, and maintain the different environments (like dev, test, staging, and production) where applications run. It ensures consistency, reliability, and speed across the software development lifecycle
+- Port, DB URL,VPS, Credentails,OAuth credentials,CORS, lot of other things
+- Dev -> Stage -> Prod
+- Don't commit secrets to github 

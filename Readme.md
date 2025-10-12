@@ -231,6 +231,75 @@ docker rmi -f nginx
 ```
 - To remove an Image
 
+```bash
+docker build -t mern-backend .
+
+# run after building image
+docker run -p 5000:5000 --name backend --env-file .env mern-backend
+```
+- docker build is used to build a Docker image from a Dockerfile
+
+
+
+### Dockerfile
+
+
+| Instruction | Description                                                                              |
+| ----------- | ---------------------------------------------------------------------------------------- |
+| **FROM**    | Specifies the base image (like `ubuntu`, `node`, `python`, etc.)                         |
+| **WORKDIR** | Sets the working directory inside the container                                           |
+| **COPY**    | Copies files from your local machine into the container                                  |
+| **RUN**     | Runs a command during the image build process (e.g., install dependencies)               |
+| **EXPOSE**  | Informs Docker that the container listens on a specific port                             |
+| **CMD**     | Defines the default command to run when the container starts (only one `CMD` is allowed) |
+
+
+```Dockerfile
+FROM node:20-alpine
+
+WORKDIR /app
+
+COPY package*.json ./
+
+RUN npm install
+
+COPY  . .
+
+EXPOSE 5000
+
+CMD ["node", "server.js"]
+
+```
+### What WORKDIR /app Does
+- This command tells Docker:
+“From now on, everything I do (COPY, RUN, CMD, etc.) happens inside the folder /app inside the container.”
+
+- If /app doesn’t exist yet, Docker will automatically create it for you.
+You don’t have to manually run mkdir /app — Docker handles that
+
+
+### Docker COPY Syntax
+
+| Part            | Meaning                                                       | Location                                         |
+| --------------- | ------------------------------------------------------------- | ------------------------------------------------ |
+| `<source>`      | The file or folder you want to copy **from**                  | Your **local machine** (where the Dockerfile is) |
+| `<destination>` | Where you want the file/folder to go **inside the container** | The **container’s filesystem**                   |
+
+
+### EXPOSE
+
+Think of EXPOSE 5000 like putting a sign on a door:
+
+“This container is listening on port 5000.”
+
+But you still need to open the door (with -p 5000:5000) to actually reach it from outside
+
+### CMD
+- When someone runs this container, execute node server.js from the current working directory
+- Because WORKDIR /app was set earlier, the current directory is /app.
+- Docker does not need a separate cd /app — it remembers the WORKDIR internally
+
+
 
 
 

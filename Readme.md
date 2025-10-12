@@ -130,3 +130,110 @@ Examples: bash, zsh, fish.
 - Port, DB URL,VPS, Credentails,OAuth credentials,CORS, lot of other things
 - Dev -> Stage -> Prod
 - Don't commit secrets to github 
+
+
+## Docker
+- Tool -> package an application ->code,libraries,runtime
+- Container that can run anywhere
+- Docker engine runs on the HOST OS  and manages containers,your app lives in a container,isolated from the host multiple containers side by side
+- Docker ek tool hai jo tumhari app aur uske chalne ke liye jo-jo chahiye (jaise Node, MongoDB, ya Python version) — sab ek container me band kar deta hai.
+- Phir wo container kahin bhi chala lo — apne laptop pe, server pe, ya cloud me — sab jagah same tarah chalega.
+Soch lo jaise ek tiffin box hai jisme app + uska pura setup ready hai, bas tiffin kholte hi app serve ho jati hai
+- Internally ye OS-level virtualization use karta hai (VM nahi), isliye ye lightweight aur fast hota hai.
+
+### Docker Architecture Overview
+- Docker mainly 3 core components me divide hota hai:
+1. Docker Client
+2. Docker Daemon (dockerd)
+3. Docker Objects (Images, Containers, Volumes, Networks)
+
+**Flow: Docker Client → Docker Daemon → Container**
+1. **Docker Client (CLI / API Call)**
+- Jab tum terminal me koi command dete ho, jaise:
+```go
+docker run nginx
+```
+- Ye Docker Client (CLI) hota hai jo command ko Docker Daemon ko send karta hai
+- Client sirf ek interface hai — khud kuch nahi karta, bas instruction send karta hai
+
+2. **Docker Daemon (dockerd)**
+- Ye Docker ka main engine hai
+- Client se API requests leta hai (via REST API, Unix socket, or TCP)
+
+- Fir wo actual kaam karta hai:
+    - Image pull karna (Docker Hub ya registry se)
+    - Container create/run karna
+    - Network, volumes manage karna
+- Example flow for docker run nginx:
+    - Daemon check karega: local me nginx image hai kya?
+    - Agar nahi hai → Docker Hub se pull karega.
+    - Image se container create karega.
+    - Container ko start karega.
+    - Client ko response bhej dega (container ID, logs, etc.)
+
+
+3. **Container (Runtime Layer)**
+
+- Jab Daemon image ko run karta hai, to ek container banta hai.
+
+- Ye container ek isolated environment hota hai jisme:
+
+    - Image ka content
+    - File system (copy-on-write layer)
+    - Network namespace
+    - Process (application ka actual run)
+
+### Commands
+```bash
+docker run -d -p 8080:80 nginx
+```
+| Part         | Meaning                                                                          |
+| ------------ | -------------------------------------------------------------------------------- |
+| `docker run` | Tells Docker to **create and start** a new container                             |
+| `-d`         | Run the container in **detached mode** (in the background)                       |
+| `-p 8080:80` | **Port mapping** → maps your **host’s port 8080** to the **container’s port 80** |
+| `nginx`      | The **image** to use — Docker will use `nginx:latest` by default                 |
+
+
+```bash
+docker ps 
+```
+- only running containers
+
+```bash
+docker ps -a
+```
+- list all containers
+
+```bash
+docker stop container_id
+
+docker stop container1 container2 containerN
+```
+- stop a running container
+
+```bash
+docker rm container_id
+```
+- First stop the container or use -f
+
+```bash
+docker container prune
+```
+- To remove all the container
+
+```bash
+docker rmi nginx
+
+docker rmi nginx hello-world
+
+docker rmi -f nginx
+```
+- To remove an Image
+
+
+
+
+
+
+
